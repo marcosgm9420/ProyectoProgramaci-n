@@ -1,5 +1,5 @@
 package personaje;
 
-public class Persona {
+public class Hacker {
 
 }
