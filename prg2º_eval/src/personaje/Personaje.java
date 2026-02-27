@@ -15,7 +15,7 @@ public class Personaje {
 	protected Arma arma;
     protected ArrayList<Estado>  estados;
     protected ArrayList<Hechizo> hechizo;
-    // BOOLEAN DE PROXIMIDAD:
+    // BOOLEAN:
     // Cada turno se decide si el personaje está cerca o lejos del enemigo.
     // Solo los que están cerca pueden usar armas de cuerpo a cuerpo (Katana).
     protected boolean estaCerca;
@@ -106,5 +106,3 @@ public class Personaje {
                 nombre, vidaActual, vidaMax, energia, distancia, efecto);
     }
 }
-    
-    
