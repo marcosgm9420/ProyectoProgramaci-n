@@ -47,6 +47,7 @@ public class Juego {
             System.out.println("   ENEMIGOS:");
             for (Personaje p : enemigos)
                 System.out.println("   " + (p.estaVivo() ? "  " : "X ") + p.getEstado());
+            {
             
 
 	private void linea(char c, int i) {		

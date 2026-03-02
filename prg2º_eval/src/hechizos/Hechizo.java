@@ -13,4 +13,3 @@ package hechizos;
 	    // Para mostrar el nombre en pantalla
 	    String getNombre();
 	}
-

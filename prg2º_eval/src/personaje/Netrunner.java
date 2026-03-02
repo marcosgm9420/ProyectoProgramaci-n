@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import armas.Arma;
 import hechizos.HechizoDanoDirecto;
-import hechizos.HechizoDoT;
+import hechizos.HechizoDot;
 
 public class Netrunner extends Personaje {
 	
@@ -17,7 +17,7 @@ public class Netrunner extends Personaje {
         estaCerca = false; // El Netrunner siempre pelea a distancia
 
         hechizo.add(new HechizoDanoDirecto());
-        hechizo.add(new HechizoDoT());
+        hechizo.add(new HechizoDot());
     }
 
 	

@@ -1,49 +1,48 @@
 package personaje;
 
+import armas.Arma;
+import hechizos.HechizoCuracion;
+import hechizos.HechizoHot;
+import hechizos.HechizoDot;
 import java.util.ArrayList;
 import java.util.Random;
 
-public abstract class Doctor extends personaje {
+public class Doctor extends Personaje {
 
-	private static final Random rd = new Random();
+    private static final Random rand = new Random();
 
-	public Doctor(String nombre) {
+    public Doctor(String nombre) {
+        super(nombre, 100, 80, new Arma("Rifle Biótico", 8, false));
+        // false = NO es cuerpo a cuerpo → siempre puede usarlo
 
-		super(nombre, 100, 80, new Arma("Rifle Biótico", 8, false));
+        estaCerca = false; // El BioDoc siempre se mantiene a distancia
 
-		estaCerca = false;
+        hechizo.add(new HechizoCuracion("Adrenalina", 20, 25));
+        hechizo.add(new HechizoHot("Nanobots", 15, "Nanobots", 10));
+        hechizo.add(new HechizoDot("Descarga EMP", 10, "Virus", 10));
+    }
 
-		hechizos.add(new HechizoCuracion("Adrenalina", 20, 25));
-		hechizos.add(new HechizoFuego("Nanobots", 15, "Nanobots", 10));
-		hechizos.add(new HechizoRayo("Descarga Electrica", 10, "Virus", 10));
+    
+    public void actuar(ArrayList<Personaje> enemigos, ArrayList<Personaje> aliados) {
+        // Busca al aliado con menos vida
+        Personaje masHerido = null;
+        for (Personaje a : aliados) {
+            if (a.estaVivo() && a.getVidaActual() < a.getVidaMax()) {
+                if (masHerido == null || a.getVidaActual() < masHerido.getVidaActual()) {
+                    masHerido = a;
+                }
+            }
+        }
 
-	}
-
-	public abstract void actuar(ArrayList<personaje> enemigos, ArrayList<personaje> aliados);
-
-	personaje masHerido = null;for(
-	personaje a:aliados)
-	{
-		if (a.estaVivo() && a.getVidaActual() < a.getVidaMax()) {
-			if (masHerido == null || a.getVidaActual() < masHerido.getVidaActual()) {
-
-			}
-		}
-	}
-
-	if(masHerido!=null&&energia>=15)
-	{
-		int indice = rd.nextBoolean() ? 0 : 1;
-		hechizos.get(indice).lanzar(this, masHerido);
-	}else
-	{
-		for (Personaje p : enemigos) {
-			if (p.estaVivo()) {
-				boolean ok = hechizoa.get(2).lanzar(this, p);
-				if (!ok)
-					intentarAtacarConArma(p);
-				}
-			}
-		}
-	}
+        if (masHerido != null && energia >= 15) {
+            int indice = rand.nextBoolean() ? 0 : 1;
+            hechizo.get(indice).lanzar(this, masHerido);
+        } else {
+            for (Personaje p : enemigos) {
+                if (p.estaVivo()) {
+                    boolean ok = hechizo.get(2).lanzar(this, p);
+                    if (!ok) intentarAtacarConArma(p); // Rifle, siempre se puede usarlo
+                    return;
+                }}
+        }}
 }
