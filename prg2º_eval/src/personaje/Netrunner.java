@@ -2,7 +2,6 @@ package personaje;
 
 import java.util.ArrayList;
 import java.util.Random;
-
 import armas.Arma;
 import hechizos.HechizoDanoDirecto;
 import hechizos.HechizoDoT;
@@ -29,8 +28,9 @@ public class Netrunner extends Personaje {
 	        }
 	        if (objetivo == null) return;
 	        
-	        int indice = rand.nextBoolean() ? 0 : 1;
-	        boolean ok = Hechizo.get(indice).lanzar(this, objetivo);
+	     
+			int indice = rand.nextBoolean() ? 0 : 1;
+	        boolean ok = hechizo.get(indice).lanzar(this, objetivo);
 
 	        if (!ok) {
 	            intentarAtacarConArma(objetivo);
