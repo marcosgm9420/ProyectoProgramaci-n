@@ -20,7 +20,7 @@ public class Estado {
         if (esDaño) {
             System.out.println("    [" + nombre + "] daña a "
                     + objetivo.getNombre() + " por " + potencia + " HP");
-            objetivo.recibirDano(potencia);
+            objetivo.recibirDaño(potencia);
         } else {
             System.out.println("    [" + nombre + "] cura a "
                     + objetivo.getNombre() + " por " + potencia + " HP");
