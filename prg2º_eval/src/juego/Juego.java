@@ -21,6 +21,14 @@ public class Juego {
         enemigos.add(new Mercenario("Security-Droid"));
         enemigos.add(new Netrunner("Black-Hat AI"));
         enemigos.add(new Doctor("Drone-Reparador"));
-        }}
+        }
+
+	public void mostrarEquipos() {
+		
+	}
+
+	public void iniciar() {
+		
+	}}
     
         

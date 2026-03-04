@@ -9,13 +9,13 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-        linea('=', 60);
-        System.out.println(" Juego 2ªEvaluación");
-        linea('=', 60);
-        System.out.println("   NOTA: El Mercenario usa Katana (cuerpo a cuerpo).");
-        System.out.println("   Si no esta cerca del enemigo, no puede usarla.");
         linea('-', 60);
-        System.out.print("   Pulsa ENTER para comenzar...");
+        System.out.println("2ªEvaluación");
+        linea('>', 60);
+        System.out.println("   El Mercenario usa Katana (cuerpo a cuerpo).");
+        System.out.println("   Si no esta cerca del enemigo, no puede usarla.");
+        linea('>', 60);
+        System.out.print("   Pulsa ENTER ");
         scanner.nextLine();
         scanner.close();
 
@@ -25,8 +25,8 @@ public class Main {
         Thread.sleep(1500);
         juego.iniciar();
 
-        System.out.println("\n   Gracias por jugar!\n");
     }
+    
 
     private static void linea(char c, int n) {
         System.out.println(String.valueOf(c).repeat(n));
