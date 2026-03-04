@@ -34,7 +34,7 @@ public class Mercenario extends Personaje {
                     // Está lejos: da un puñetazo básico sin arma (menos daño)
                     System.out.println("    " + nombre
                             + " da un puñetazo a " + p.getNombre() + " -> 5 daño");
-                    p.recibirDano(5);
+                    p.recibirDaño(5);
                 }
                 return;
             }

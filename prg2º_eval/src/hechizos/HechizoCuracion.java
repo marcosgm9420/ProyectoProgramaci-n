@@ -1,6 +1,6 @@
 package hechizos;
-import personaje.Personaje;
 
+import personaje.Personaje;
 
 public class HechizoCuracion implements Hechizo{
 	

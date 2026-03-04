@@ -2,16 +2,16 @@ package hechizos;
 
 import personaje.Personaje;
 
-public class HechizoDanoDirecto implements Hechizo {
+public class HechizoDañoDirecto implements Hechizo {
 
 	    private String nombre;
 	    private int    coste;
-	    private int    dano;
+	    private int    daño;
 
-	    public HechizoDanoDirecto(String nombre, int coste, int dano) {
+	    public HechizoDañoDirecto(String nombre, int coste, int daño) {
 	        this.nombre = nombre;
 	        this.coste  = coste;
-	        this.dano   = dano;
+	        this.daño   = daño;
 	    }
 
 	    
@@ -23,8 +23,8 @@ public class HechizoDanoDirecto implements Hechizo {
 	        lanzador.energia -= coste;
 	        System.out.println("    " + lanzador.getNombre()
 	                + " lanza [" + nombre + "] sobre " + objetivo.getNombre()
-	                + " -> " + dano + " daño directo!");
-	        objetivo.recibirDano(dano);
+	                + " -> " + daño + " daño directo!");
+	        objetivo.recibirDaño(daño);
 	        return true;
 	    }
 

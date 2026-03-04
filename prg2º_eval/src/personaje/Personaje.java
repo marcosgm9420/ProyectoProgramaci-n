@@ -41,17 +41,17 @@ public class Personaje {
             return false; // No puede atacar con esta arma
         }
         // Puede usar el arma (está cerca O el arma es a distancia)
-        int dano = arma.calcularDano();
+        int daño = arma.calcularDaño();
         System.out.println("    " + nombre + " ataca con ["
                 + arma.getNombre() + "] a " + objetivo.getNombre()
-                + " -> " + dano + " daño");
-        objetivo.recibirDano(dano);
+                + " -> " + daño + " daño");
+        objetivo.recibirDaño(daño);
         return true;
     }
 
     //Daño y curación 
 
-    public void recibirDano(int cantidad) {
+    public void recibirDaño(int cantidad) {
         vidaActual -= cantidad;
         if (vidaActual < 0) vidaActual = 0;
         System.out.println("      " + nombre + " HP: " + vidaActual + "/" + vidaMax);

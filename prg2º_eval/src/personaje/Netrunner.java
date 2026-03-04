@@ -1,7 +1,7 @@
 package personaje;
 
 import armas.Arma;
-import hechizos.HechizoDanoDirecto;
+import hechizos.HechizoDañoDirecto;
 import hechizos.HechizoDot;
 import java.util.ArrayList;
 import java.util.Random;
@@ -16,7 +16,7 @@ public class Netrunner extends Personaje {
 
         estaCerca = false; // El Netrunner siempre pelea a distancia
 
-        hechizo.add(new HechizoDanoDirecto("Hack: Sobrecarga", 20, 30));
+        hechizo.add(new HechizoDañoDirecto("Hack: Sobrecarga", 20, 30));
         hechizo.add(new HechizoDot("Hack: Virus", 15, "Virus", 10));
     }
 
