@@ -24,9 +24,82 @@ public class Juego {
         }
 
 	public void mostrarEquipos() {
+	     System.out.println("\n   TU ESCUADRON:");
+	        for (Personaje p : tuEquipo)
+	            System.out.println("   + " + p.getEstado());
+	        System.out.println("\n   ENEMIGOS:");
+	        for (Personaje p : enemigos)
+	            System.out.println("   - " + p.getEstado());
 	}
-	public void iniciar() {
-		
-	}}
+	public void iniciar() throws InterruptedException {
+		  int ronda = 1;
+
+	        while (true) {
+	            System.out.println("\n");
+	            linea('=', 60);
+	            System.out.println("   RONDA " + ronda);
+	            linea('=', 60);
+
+	            System.out.println("   TU EQUIPO:");
+	            for (Personaje p : tuEquipo)
+	                System.out.println("   " + (p.estaVivo() ? "  " : "X ") + p.getEstado());
+	            System.out.println("   ENEMIGOS:");
+	            for (Personaje p : enemigos)
+	                System.out.println("   " + (p.estaVivo() ? "  " : "X ") + p.getEstado());
+
+	            // ── Turno de tu equipo ───────────────────────────────
+	            System.out.println("\n  --- Turno de tu equipo ---");
+	            for (Personaje heroe : tuEquipo) {
+	                if (!heroe.estaVivo()) continue;
+	                System.out.println("\n  >> " + heroe.getNombre());
+	                heroe.procesarEstados();
+	                if (heroe.estaVivo()) heroe.actuar(enemigos, tuEquipo);
+	                Thread.sleep(600);
+	                if (todosDerrota(enemigos)) break;
+	            }
+
+	            if (todosDerrota(enemigos)) {
+	                linea('=', 60);
+	                System.out.println("   MISION CUMPLIDA. Enemigos neutralizados!");
+	                linea('=', 60);
+	                break;
+	            }
+
+	            // ── Turno enemigo ────────────────────────────────────
+	            System.out.println("\n  --- Turno enemigo ---");
+	            for (Personaje enemigo : enemigos) {
+	                if (!enemigo.estaVivo()) continue;
+	                System.out.println("\n  >> " + enemigo.getNombre());
+	                enemigo.procesarEstados();
+	                if (enemigo.estaVivo()) enemigo.actuar(tuEquipo, enemigos);
+	                Thread.sleep(600);
+	                if (todosDerrota(tuEquipo)) break;
+	            }
+
+	            if (todosDerrota(tuEquipo)) {
+	                linea('=', 60);
+	                System.out.println("   DERROTA. Tu escuadron ha caido.");
+	                linea('=', 60);
+	                break;
+	            }
+
+	            ronda++;
+	            Thread.sleep(800);
+	        }
+	    }
+
+	    private boolean todosDerrota(ArrayList<Personaje> equipo) {
+	        for (Personaje p : equipo) {
+	            if (p.estaVivo()) return false;
+	        }
+	        return true;
+	    }
+
+	    private void linea(char c, int n) {
+	        System.out.println(String.valueOf(c).repeat(n));
+	    }
+	
+
+	}
     
         

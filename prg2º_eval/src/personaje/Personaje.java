@@ -1,7 +1,6 @@
 package personaje;
 
 import java.util.ArrayList;
-
 import armas.Arma;
 import estado.Estado;
 import hechizos.Hechizo;

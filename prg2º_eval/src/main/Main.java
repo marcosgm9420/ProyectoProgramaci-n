@@ -25,8 +25,10 @@ public class Main {
         Thread.sleep(1500);
         juego.iniciar();
 
+        
     }
     
+
 
     private static void linea(char c, int n) {
         System.out.println(String.valueOf(c).repeat(n));
