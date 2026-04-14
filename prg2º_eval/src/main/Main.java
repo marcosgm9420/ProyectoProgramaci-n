@@ -22,7 +22,7 @@ public class Main {
         Juego juego = new Juego();
         
         juego.mostrarEquipos();
-        Thread.sleep(1500);
+        Thread.sleep(15000);
         juego.iniciar();
 
         
