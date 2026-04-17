@@ -10,11 +10,8 @@ public class HechizoHot implements Hechizo {
 	    private String nombreEstado;
 	    private int    potencia;
 
-	    public HechizoHot(String string, int i, String string2, int j) {
-		}
 
-
-		public void HechizoHoT(String nombre, int coste, String nombreEstado, int potencia) {
+	    public HechizoHot(String nombre, int coste, String nombreEstado, int potencia) {
 	        this.nombre       = nombre;
 	        this.coste        = coste;
 	        this.nombreEstado = nombreEstado;

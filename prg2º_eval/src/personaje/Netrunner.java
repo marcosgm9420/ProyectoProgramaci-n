@@ -40,4 +40,14 @@ public class Netrunner extends Personaje {
             intentarAtacarConArma(objetivo);
         }
     }
+
+
+	public Arma getArmaSecundaria() {
+		return armaSecundaria;
+	}
+
+
+	public void setArmaSecundaria(Arma armaSecundaria) {
+		this.armaSecundaria = armaSecundaria;
+	}
 }

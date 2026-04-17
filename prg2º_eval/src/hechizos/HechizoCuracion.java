@@ -2,6 +2,7 @@ package hechizos;
 
 import personaje.Personaje;
 
+
 public class HechizoCuracion implements Hechizo{
 	
 	    private String nombre;
@@ -27,7 +28,5 @@ public class HechizoCuracion implements Hechizo{
 	    }
 
 	    public boolean esOfensivo() { return false; }
-	    public String  getNombre()  { return nombre; 
-	
-	    
+	    public String  getNombre()  { return nombre;   
 }}

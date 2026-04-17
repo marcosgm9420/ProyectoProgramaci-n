@@ -2,6 +2,7 @@ package hechizos;
 
 import personaje.Personaje;
 
+
 public class HechizoDañoDirecto implements Hechizo {
 
 	    private String nombre;
