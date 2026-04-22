@@ -1,24 +1,20 @@
 package personaje;
-
+ 
 import java.util.ArrayList;
 import armas.Arma;
 import estado.Estado;
 import hechizos.Hechizo;
-import personaje.Personaje;
-
+ 
 public class Personaje {
-	protected String nombre;
-	protected int vidaActual;
-	protected int vidaMax;
-	public int energia;
-	protected Arma arma;
+    protected String nombre;
+    protected int vidaActual;
+    protected int vidaMax;
+    public int energia;
+    protected Arma arma;
     protected ArrayList<Estado>  estados;
     protected ArrayList<Hechizo> hechizo;
-    // BOOLEAN:
-    // Cada turno se decide si el personaje está cerca o lejos del enemigo.
-    // Solo los que están cerca pueden usar armas de cuerpo a cuerpo (Katana).
     protected boolean estaCerca;
-
+ 
     public Personaje(String nombre, int vida, int energia, Arma arma) {
         this.nombre     = nombre;
         this.vidaMax    = vida;
@@ -26,20 +22,16 @@ public class Personaje {
         this.energia    = energia;
         this.arma       = arma;
         this.estados    = new ArrayList<>();
-        this.hechizo   = new ArrayList<>();
+        this.hechizo    = new ArrayList<>();
         this.estaCerca  = false;
     }
-
-    // Ataque con arma 
-    // Comprueba el boolean antes de usar el arma
+ 
     public boolean intentarAtacarConArma(Personaje objetivo) {
         if (arma.esCuerpoACuerpo && !estaCerca) {
-            // El arma es cuerpo a cuerpo pero el personaje está LEJOS
             System.out.println("    " + nombre + " está demasiado lejos para usar ["
                     + arma.getNombre() + "]!");
-            return false; // No puede atacar con esta arma
+            return false;
         }
-        // Puede usar el arma (está cerca O el arma es a distancia)
         int daño = arma.calcularDaño();
         System.out.println("    " + nombre + " ataca con ["
                 + arma.getNombre() + "] a " + objetivo.getNombre()
@@ -47,22 +39,19 @@ public class Personaje {
         objetivo.recibirDaño(daño);
         return true;
     }
-
-    //Daño y curación 
-
+ 
     public void recibirDaño(int cantidad) {
         vidaActual -= cantidad;
         if (vidaActual < 0) vidaActual = 0;
         System.out.println("      " + nombre + " HP: " + vidaActual + "/" + vidaMax);
     }
-
+ 
     public void curar(int cantidad) {
         vidaActual += cantidad;
         if (vidaActual > vidaMax) vidaActual = vidaMax;
         System.out.println("      " + nombre + " HP: " + vidaActual + "/" + vidaMax);
     }
-
-    //Estados (DoT / HoT) 
+ 
     public void agregarEstado(Estado nuevo) {
         for (Estado e : estados) {
             if (e.nombre.equals(nuevo.nombre)) {
@@ -73,7 +62,7 @@ public class Personaje {
         }
         estados.add(nuevo);
     }
-
+ 
     public void procesarEstados() {
         for (int i = estados.size() - 1; i >= 0; i--) {
             Estado e = estados.get(i);
@@ -84,19 +73,24 @@ public class Personaje {
             }
         }
     }
-
-    // Método que cada subclase sobreescribe 
-    public void actuar(ArrayList<Personaje> enemigos, ArrayList<Personaje> aliados) {
-       
-    }
-
-   
-
+ 
+    public void actuar(ArrayList<Personaje> enemigos, ArrayList<Personaje> aliados) {}
+ 
+    //  GETTERS 
     public boolean estaVivo()      { return vidaActual > 0; }
     public String  getNombre()     { return nombre; }
     public int     getVidaActual() { return vidaActual; }
     public int     getVidaMax()    { return vidaMax; }
-
+ 
+    //  SETTERS (necesarios para reconstruir personajes desde la BD) 
+    public void setVidaActual(int vidaActual) {
+        this.vidaActual = Math.max(0, Math.min(vidaActual, vidaMax));
+    }
+ 
+    public void setEnergia(int energia) {
+        this.energia = energia;
+    }
+ 
     public String getEstado() {
         String efecto = estados.isEmpty() ? ""
                 : " [" + estados.get(0).nombre + "]";
@@ -105,3 +99,4 @@ public class Personaje {
                 nombre, vidaActual, vidaMax, energia, distancia, efecto);
     }
 }
+ 
