@@ -2,6 +2,7 @@ package estado;
 
 import personaje.Personaje;
 
+
 public class Estado {
 	public String  nombre;
     public int     potencia;  // Cuánto daña o cura por turno
