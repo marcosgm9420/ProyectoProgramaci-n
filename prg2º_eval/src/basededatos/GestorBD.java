@@ -15,7 +15,7 @@ import personaje.Doctor;
 /**
  * Clase GestorBD: gestiona todas las operaciones de acceso a la base de datos MySQL.
  * Actúa como capa de persistencia del juego RPG, permitiendo guardar, cargar,
- * actualizar y eliminar partidas y personajes.
+ * actualizar y eliminar partidas y personajes......
  */
 public class GestorBD {
 
