@@ -175,7 +175,7 @@ public class GestorBD {
     /**
      * Actualiza en la BD la vida y energía de un personaje concreto dentro de una partida.
      * Se llama al final de cada turno para sincronizar el estado del juego con la persistencia.
-     * La búsqueda se hace por idPartida + nombre, que actúan como clave compuesta.
+     * Laa búsqueda se hace por idPartida + nombre, que actúan como clave compuesta.
      */
     public static void actualizarPersonaje(int idPartida, String nombre, int vidaActual, int energia) {
         String sql = "UPDATE personajes_partida SET vida_actual = ?, energia = ? "
