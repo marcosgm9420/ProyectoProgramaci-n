@@ -1,0 +1,138 @@
+---
+title: Sample title
+---
+classDiagram
+direction TB
+    class Personaje {
+	    #String nombre
+	    #int vidaActual
+	    #int vidaMax
+	    +int energia
+	    #Arma arma
+	    #ArrayList~Estado~ estados
+	    #ArrayList~Hechizo~ hechizo
+	    #boolean estaCerca
+	    +intentarAtacarConArma(Personaje) boolean
+	    +recibirDano(int)
+	    +curar(int)
+	    +agregarEstado(Estado)
+	    +procesarEstados()
+	    +actuar(enemigos, aliados)
+	    +estaVivo() boolean
+	    +getEstado() String
+    }
+
+    class Mercenario {
+	    -Arma armaSecundaria
+	    +Mercenario(String)
+	    +actuar(enemigos, aliados)
+    }
+
+    class Netrunner {
+	    -Arma armaSecundaria
+	    +Netrunner(String)
+	    +actuar(enemigos, aliados)
+    }
+
+    class Doctor {
+	    +Doctor(String)
+	    +actuar(enemigos, aliados)
+    }
+
+    class Arma {
+	    -String nombre
+	    -int danoBase
+	    +boolean esCuerpoACuerpo
+	    +calcularDano() int
+	    +getNombre() String
+    }
+
+    class Estado {
+	    +String nombre
+	    +int potencia
+	    +int duracion
+	    +boolean esDano
+	    +aplicarEfecto(Personaje)
+	    +haTerminado() boolean
+    }
+
+    class Hechizo {
+	    +lanzar(lanzador, objetivo) boolean
+	    +esOfensivo() boolean
+	    +getNombre() String
+    }
+
+    class HechizoCuracion {
+	    -String nombre
+	    -int coste
+	    -int cantidad
+	    +lanzar(lanzador, objetivo) boolean
+    }
+
+    class HechizoDanoDirecto["HechizoDañoDirecto"] {
+	    -String nombre
+	    -int coste
+	    -int dano
+	    +lanzar(lanzador, objetivo) boolean
+    }
+
+    class HechizoDot {
+	    -String nombre
+	    -int coste
+	    -String nombreEstado
+	    -int potencia
+	    +lanzar(lanzador, objetivo) boolean
+    }
+
+    class HechizoHot {
+	    -String nombre
+	    -int coste
+	    -String nombreEstado
+	    -int potencia
+	    +lanzar(lanzador, objetivo) boolean
+    }
+
+    class Juego {
+	    -ArrayList~Personaje~ tuEquipo
+	    -ArrayList~Personaje~ enemigos
+	    +guardarPersonajesIniciales(int)
+	    +cargarDesdeBD(int)
+	    +mostrarEquipos()
+	    +iniciar(int)
+    }
+
+    class GestorBD {
+	    +conectar() Connection$
+	    +crearNuevaPartida(String) int$
+	    +guardarPersonaje(...)$
+	    +listarPartidas()$
+	    +cargarPersonajesPorBando(...) ArrayList$
+	    +actualizarPersonaje(...)$
+	    +actualizarTurno(int, int)$
+	    +borrarPartida(int)$
+    }
+
+    class Main {
+	    Clase main(lanzador del juego)
+    }
+
+	<<interface>> Hechizo
+
+    Personaje <|-- Mercenario
+    Personaje <|-- Netrunner
+    Personaje <|-- Doctor
+    Hechizo <|.. HechizoCuracion
+    Hechizo <|.. HechizoDanoDirecto
+    Hechizo <|.. HechizoDot
+    Hechizo <|.. HechizoHot
+    Personaje "1" *-- "1" Arma : tiene
+    Personaje "1" -- "0.." Estado : sufre
+    Personaje "1" o-- "0..*" Hechizo : conoce
+    Mercenario "1" *-- "1" Arma : armaSecundaria
+    Netrunner "1" *-- "1" Arma : armaSecundaria
+    HechizoDot ..> Estado : crea
+    HechizoHot ..> Estado : crea
+    Juego "1" o-- "*" Personaje : equipos
+    Juego ..> GestorBD : usa
+    Main ..> Juego : inicia
+    Main ..> GestorBD : gestiona
