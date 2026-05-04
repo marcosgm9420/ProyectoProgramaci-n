@@ -9,8 +9,7 @@ import java.util.Random;
 
 public class Doctor extends Personaje {
 
-    private static final Random rand = new Random();
-
+   
     public Doctor(String nombre) {
         super(nombre, 100, 80, new Arma("Rifle Biótico", 8, false));
         // false = NO es cuerpo a cuerpo → siempre puede usarlo
@@ -24,6 +23,8 @@ public class Doctor extends Personaje {
 
     
     public void actuar(ArrayList<Personaje> enemigos, ArrayList<Personaje> aliados) {
+    	Random rand = new Random();
+
         // Busca al aliado con menos vida
         Personaje masHerido = null;
         for (Personaje a : aliados) {
@@ -36,11 +37,11 @@ public class Doctor extends Personaje {
 
         if (masHerido != null && energia >= 15) {
             int indice = rand.nextBoolean() ? 0 : 1;
-            hechizo.get(indice).lanzar(this, masHerido);
+            lanzarHechizo(hechizo.get(indice), masHerido);
         } else {
             for (Personaje p : enemigos) {
                 if (p.estaVivo()) {
-                    boolean ok = hechizo.get(2).lanzar(this, p);
+                	boolean ok = lanzarHechizo(hechizo.get(2), p);
                     if (!ok) intentarAtacarConArma(p); // Rifle, siempre se puede usarlo
                     return;
                 }}

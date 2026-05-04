@@ -32,12 +32,28 @@ public class Personaje {
                     + arma.getNombre() + "]!");
             return false;
         }
+    
         int daño = arma.calcularDaño();
         System.out.println("    " + nombre + " ataca con ["
                 + arma.getNombre() + "] a " + objetivo.getNombre()
                 + " -> " + daño + " daño");
         objetivo.recibirDaño(daño);
         return true;
+    }
+    /**
+     * Lanza un hechizo desde ESTE personaje (this = lanzador) hacia un objetivo.
+     *
+     * Es el equivalente, para hechizos, de intentarAtacarConArma():
+     *   - intentarAtacarConArma(objetivo)  -> ataque físico
+     *   - lanzarHechizo(h, objetivo)       -> ataque/curación con magia
+     *
+     * Así queda claro QUIÉN LANZA y QUIÉN RECIBE el hechizo, en lugar
+     * de tener que escribir cada vez "hechizo.get(i).lanzar(this, p)".
+     */
+    public boolean lanzarHechizo(Hechizo h, Personaje objetivo) {
+        // this -> el personaje que lanza el hechizo
+        // objetivo -> el personaje que recibe el efecto
+        return h.lanzar(this, objetivo);
     }
  
     public void recibirDaño(int cantidad) {

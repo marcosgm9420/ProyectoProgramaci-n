@@ -33,8 +33,7 @@ public class Netrunner extends Personaje {
  
         // Elige entre sus dos hechizos aleatoriamente
         int indice = rand.nextBoolean() ? 0 : 1;
-        boolean ok = hechizo.get(indice).lanzar(this, objetivo);
- 
+        boolean ok = lanzarHechizo(hechizo.get(indice), objetivo); 
         if (!ok) {
             // Sin energía: usa la pistola (siempre puede, está a distancia)
             intentarAtacarConArma(objetivo);

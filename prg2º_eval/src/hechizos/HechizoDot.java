@@ -3,34 +3,29 @@ package hechizos;
 import personaje.Personaje;
 import estado.Estado;
 
-public class HechizoDot implements Hechizo {
+/**
+ * DoT = Damage over Time.
+ * Aplica un Estado que va dañando al objetivo durante varios turnos.
+ */
+public class HechizoDot extends HechizosBase {
 
-    private String nombre;
-    private int    coste;
-    private String nombreEstado;
-    private int    potencia;
+    private String nombreEstado;  // Nombre del efecto que se pega (ej. "Virus")
+    private int    potencia;      // Daño por turno
 
     public HechizoDot(String nombre, int coste, String nombreEstado, int potencia) {
-        this.nombre       = nombre;
-        this.coste        = coste;
+        super(nombre, coste);
         this.nombreEstado = nombreEstado;
         this.potencia     = potencia;
     }
 
-    
-    public boolean lanzar(Personaje lanzador, Personaje objetivo) {
-        if (lanzador.energia < coste) {
-            System.out.println("    Sin energía para " + nombre);
-            return false;
-        }
-        lanzador.energia -= coste;
+    @Override
+    protected void aplicarEfecto(Personaje lanzador, Personaje objetivo) {
         System.out.println("    " + lanzador.getNombre()
                 + " infecta con [" + nombre + "] a " + objetivo.getNombre() + "!");
+        // true = es daño (DoT). Dura 3 turnos.
         objetivo.agregarEstado(new Estado(nombreEstado, potencia, 3, true));
-        return true;
     }
 
-     public boolean esOfensivo() { return true; }
-     public String  getNombre()  { return nombre; }
+    @Override
+    public boolean esOfensivo() { return true; }
 }
-

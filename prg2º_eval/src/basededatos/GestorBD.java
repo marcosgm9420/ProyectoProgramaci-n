@@ -31,7 +31,6 @@ public class GestorBD {
     public static Connection conectar() {
         Connection conexion = null;
         try {
-            // DriverManager busca el driver JDBC adecuado según la URL y devuelve la conexión
             conexion = DriverManager.getConnection(URL, USUARIO, PASSWORD);
         } catch (SQLException e) {
             System.out.println("Error al conectar con la base de datos.");
@@ -149,7 +148,7 @@ public class GestorBD {
 
                 Personaje p = null;
 
-                // Patrón de reconstrucción de objetos polimórficos:
+                // Patrón de reconstrucción de objetos 
                 // según el texto guardado en la columna 'clase', instanciamos la subclase correcta
                 switch (clase) {
                     case "Mercenario": p = new Mercenario(nombre); break;

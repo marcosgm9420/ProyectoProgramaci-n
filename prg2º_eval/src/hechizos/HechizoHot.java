@@ -3,40 +3,30 @@ package hechizos;
 import personaje.Personaje;
 import estado.Estado;
 
-public class HechizoHot implements Hechizo {
+/**
+ * HoT = Healing over Time.
+ * Aplica un Estado que va curando al objetivo durante varios turnos.
+ */
+public class HechizoHot extends HechizosBase {
 
-	    private String nombre;
-	    private int    coste;
-	    private String nombreEstado;
-	    private int    potencia;
+    private String nombreEstado;  // Nombre del efecto que se pega (ej. "Nanobots")
+    private int    potencia;      // Curación por turno
 
+    public HechizoHot(String nombre, int coste, String nombreEstado, int potencia) {
+        super(nombre, coste);
+        this.nombreEstado = nombreEstado;
+        this.potencia     = potencia;
+    }
 
-	    public HechizoHot(String nombre, int coste, String nombreEstado, int potencia) {
-	        this.nombre       = nombre;
-	        this.coste        = coste;
-	        this.nombreEstado = nombreEstado;
-	        this.potencia     = potencia;
-	    }
+    @Override
+    protected void aplicarEfecto(Personaje lanzador, Personaje objetivo) {
+        System.out.println("    " + lanzador.getNombre()
+                + " activa [" + nombre + "] en " + objetivo.getNombre() + "!");
+        // false = NO es daño (es HoT, cura). Dura 3 turnos.
+        objetivo.agregarEstado(new Estado(nombreEstado, potencia, 3, false));
+    }
 
-	    
-	    public boolean lanzar(Personaje lanzador, Personaje objetivo) {
-	        if (lanzador.energia < coste) {
-	            System.out.println("    Sin energía para " + nombre);
-	            return false;
-	        }
-	        lanzador.energia -= coste;
-	        System.out.println("    " + lanzador.getNombre()
-	                + " activa [" + nombre + "] en " + objetivo.getNombre() + "!");
-	        pause(1500);
-	        objetivo.agregarEstado(new Estado(nombreEstado, potencia, 3, false));
-	        return true;
-	    }
-
-	    private void pause(int i) {			
-		}
-
-		 public boolean esOfensivo() { return false; }
-	     public String  getNombre()  { return nombre; }
-	}
-
-
+    @Override
+    public boolean esOfensivo() { return false; }
+   
+}

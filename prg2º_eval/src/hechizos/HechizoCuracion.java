@@ -2,31 +2,26 @@ package hechizos;
 
 import personaje.Personaje;
 
+public class HechizoCuracion extends HechizosBase {
 
-public class HechizoCuracion implements Hechizo{
-	
-	    private String nombre;
-	    private int    coste;
-	    private int    cantidad;
+    private int cantidad;   // Cuánta vida cura
 
-	    public HechizoCuracion(String nombre, int coste, int cantidad) {
-	        this.nombre   = nombre;
-	        this.coste    = coste;
-	        this.cantidad = cantidad;
-	    }
+    public HechizoCuracion(String nombre, int coste, int cantidad) {
+        super(nombre, coste);     // Delegamos nombre y coste al padre
+        this.cantidad = cantidad;
+    }
 
-	    public boolean lanzar(Personaje lanzador, Personaje objetivo) {
-	        if (lanzador.energia < coste) {
-	            System.out.println("    Sin energía para " + nombre);
-	            return false;
-	        }
-	        lanzador.energia -= coste;
-	        System.out.println("    " + lanzador.getNombre()
-	                + " aplica [" + nombre + "] a " + objetivo.getNombre() + "!");
-	        objetivo.curar(cantidad);
-	        return true;
-	    }
+    /**
+     * Solo definimos el EFECTO específico: curar al objetivo.
+     * El padre (HechizoBase) ya se encarga de la energía.
+     */
+    @Override
+    protected void aplicarEfecto(Personaje lanzador, Personaje objetivo) {
+        System.out.println("    " + lanzador.getNombre()
+                + " aplica [" + nombre + "] a " + objetivo.getNombre() + "!");
+        objetivo.curar(cantidad);
+    }
 
-	    public boolean esOfensivo() { return false; }
-	    public String  getNombre()  { return nombre;   
-}}
+    @Override
+    public boolean esOfensivo() { return false; }   // Es de apoyo, no daña
+}
