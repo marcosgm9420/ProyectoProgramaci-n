@@ -4,7 +4,6 @@ import personaje.Personaje;
 import estado.Estado;
 
 /**
- * HoT = Healing over Time.
  * Aplica un Estado que va curando al objetivo durante varios turnos.
  */
 public class HechizoHot extends HechizosBase {

@@ -9,13 +9,12 @@ import estado.Estado;
 
 /**
  * Tests para la clase Estado.
- *
  * Casos cubiertos:
- *  - haTerminado() devuelve false si quedan turnos
- *  - haTerminado() devuelve true cuando duracion llega a 0
- *  - aplicarEfecto() con DoT reduce la vida del objetivo
- *  - aplicarEfecto() con HoT aumenta la vida del objetivo
- *  - aplicarEfecto() descuenta 1 de duracion en cada llamada
+ *  - haTerminado devuelve false si quedan turnos
+ *  - haTerminado devuelve true cuando duracion llega a 0
+ *  - aplicarEfecto con DoT reduce la vida del objetivo
+ *  - aplicarEfecto con HoT aumenta la vida del objetivo
+ *  - aplicarEfecto descuenta 1 de duracion en cada llamada
  *  - HoT no supera vidaMax (la curación la limita Personaje.curar)
  *  - DoT no baja de 0 HP (la limita Personaje.recibirDaño)
  */

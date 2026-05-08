@@ -20,11 +20,11 @@ import hechizos.HechizoDot;
  *  - HechizoHot
  *
  * Casos cubiertos por cada hechizo:
- *  - lanzar() con energía suficiente → devuelve true y aplica el efecto
- *  - lanzar() sin energía → devuelve false y NO modifica al objetivo
- *  - lanzar() consume la energía correcta del lanzador
- *  - esOfensivo() devuelve el valor correcto según el tipo
- *  - getNombre() devuelve el nombre registrado
+ *  - lanzar con energía suficiente = devuelve true y aplica el efecto
+ *  - lanzar sin energía → devuelve false y NO modifica al objetivo
+ *  - lanzar consume la energía correcta del lanzador
+ *  - esOfensivo devuelve el valor correcto según el tipo
+ *  - getNombre devuelve el nombre registrado
  */
 @DisplayName("Tests de Hechizos")
 class HechizosTest {

@@ -10,17 +10,16 @@ import personaje.Personaje;
 
 /**
  * Tests para la clase Personaje.
- *
  * Casos cubiertos:
- *  - estaVivo() según la vida actual
- *  - recibirDaño() descuenta HP correctamente y no baja de 0
- *  - curar() suma HP correctamente y no supera vidaMax
- *  - agregarEstado() apila estados nuevos
- *  - agregarEstado() renueva (no duplica) un estado ya activo
- *  - intentarAtacarConArma() con arma CaC estando lejos → false, sin daño
- *  - intentarAtacarConArma() con arma CaC estando cerca → true, aplica daño
- *  - intentarAtacarConArma() con arma a distancia siempre ataca → true
- *  - setVidaActual() respeta los límites [0, vidaMax]
+ *  - estaVivo según la vida actual
+ *  - recibirDaño descuenta HP correctamente y no baja de 0
+ *  - curar suma HP correctamente y no supera vidaMax
+ *  - agregarEstado apila estados nuevos
+ *  - agregarEstado renueva (no duplica) un estado ya activo
+ *  - intentarAtacarConArma con arma estando lejos = false, sin daño
+ *  - intentarAtacarConArma con arma estando cerca = true, aplica daño
+ *  - intentarAtacarConArma con arma a distancia siempre ataca = true
+ *  - setVidaActual respeta los límites
  */
 @DisplayName("Tests de Personaje")
 class PersonajeTest {
@@ -30,12 +29,10 @@ class PersonajeTest {
 
     @BeforeEach
     void setUp() {
-        // Arma CaC para atacante, arma distancia para objetivo
+        // Arma para atacante, arma distancia para objetivo
         atacante = new Personaje("Atacante", 100, 50, new Arma("Katana", 15, true));
         objetivo  = new Personaje("Objetivo",  80, 30, new Arma("Pistola", 5, false));
     }
-
-    // ── estaVivo ─────────────────────────────────────────────────────────────
 
     @Test
     @DisplayName("estaVivo devuelve true con vida > 0")
@@ -154,7 +151,7 @@ class PersonajeTest {
     @DisplayName("Arma a distancia siempre puede atacar (lejos o cerca)")
     void intentarAtacar_distancia_siempreAtaca() {
         Personaje tirador = new Personaje("Tirador", 100, 50, new Arma("Pistola", 8, false));
-        // estaCerca = false por defecto → aun así debe poder atacar
+        // estaCerca = false por defecto = aun así debe poder atacar
         boolean resultado = tirador.intentarAtacarConArma(objetivo);
         assertTrue(resultado, "Un arma a distancia siempre debe poder atacar");
         assertEquals(72, objetivo.getVidaActual(), "Debe hacer exactamente 8 de daño");

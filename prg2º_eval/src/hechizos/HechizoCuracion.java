@@ -11,10 +11,10 @@ public class HechizoCuracion extends HechizosBase {
         this.cantidad = cantidad;
     }
 
-    /**
-     * Solo definimos el EFECTO específico: curar al objetivo.
-     * El padre (HechizoBase) ya se encarga de la energía.
-     */
+    
+     //Solo definimos el EFECTO específico: curar al objetivo.
+     
+     
     @Override
     protected void aplicarEfecto(Personaje lanzador, Personaje objetivo) {
         System.out.println("    " + lanzador.getNombre()

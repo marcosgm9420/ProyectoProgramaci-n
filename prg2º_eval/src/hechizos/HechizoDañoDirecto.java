@@ -11,9 +11,9 @@ public class HechizoDañoDirecto extends HechizosBase {
         this.daño = daño;
     }
 
-    /**
-     * Efecto específico: aplicar daño directo al objetivo.
-     */
+    
+    // Efecto específico: aplicar daño directo al objetivo.
+     
     @Override
     protected void aplicarEfecto(Personaje lanzador, Personaje objetivo) {
         System.out.println("    " + lanzador.getNombre()

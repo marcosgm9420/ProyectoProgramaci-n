@@ -4,7 +4,6 @@ import personaje.Personaje;
 import estado.Estado;
 
 /**
- * DoT = Damage over Time.
  * Aplica un Estado que va dañando al objetivo durante varios turnos.
  */
 public class HechizoDot extends HechizosBase {
